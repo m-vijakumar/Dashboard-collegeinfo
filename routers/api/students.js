@@ -17,6 +17,7 @@ router.post("/add",studentController.add)
 // @desc    route for getting student details
 // @access  PRAVITE 
 
+
 // router.post("/student",studentController.getDetails)
 
 // @type    POST

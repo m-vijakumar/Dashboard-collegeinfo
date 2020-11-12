@@ -12,18 +12,18 @@ exports.add = async(req,res) =>{
         createdOn:Date.now()
     }) 
     await student.save()
-    .then(()=>{
-        res.json({
-            error:false,
-            msg:"Student Added"
-        })
-    })
-    .catch((err)=>{
-        res.json({
-            error:true,
-            msg:"internal Error...!"
-        })
-    })
+                .then(()=>{
+                    res.json({
+                        error:false,
+                        msg:"Student Added"
+                    })
+                })
+                .catch((err)=>{
+                    res.json({
+                        error:true,
+                        msg:"internal Error...!"
+                    })
+                })
 
 };
 

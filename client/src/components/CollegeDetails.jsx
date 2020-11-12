@@ -45,11 +45,12 @@ function AlertDismissibleExample(props) {
       return (
         <Alert variant="secondary" onClose={() => setShow(false)} dismissible>
           
-          {displayStudents}
+          {students.length ==0 ? "No Students Found":displayStudents }
+      
         </Alert>
       );
     }
-    return <p onClick={(e) => getStudents(props.collegeId) } >{props.collegeName}</p>;
+    return <p style={{width:"100%", cursor:"pointer"}} onClick={(e) => getStudents(props.college._id) } ><table  className="row align-items-center"><td className="col">{props.college.name} {" "}</td><td className="col" >{props.college.state}{" "}</td><td className="col" > {props.college.city}{" "} </td><td className="col" > {props.college.noofstudents}{" "} </td><td className="col" > {props.college.courses}{" "} </td></table>  </p>;
   }
 
   
@@ -61,9 +62,10 @@ const CollegeDetails = (props) => {
 
     
     return (
-        <div className=" App" >
-                <AlertDismissibleExample  collegeId={props.college._id} collegeName={props.college.name} />        
-        </div>
+
+          <div className=" App1" >
+                  <AlertDismissibleExample  college={props.college}  />        
+          </div>
     )
 }
 

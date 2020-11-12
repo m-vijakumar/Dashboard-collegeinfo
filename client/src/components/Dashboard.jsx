@@ -87,13 +87,13 @@ export default  function Dashboard(props) {
        
         
         
-        <div className="App">
-        <h1>Colleges Data</h1>
+        <div className="App ">
+        <h1 class="justify-content-center align-items-center" style={{textAlign:"center"}}>Colleges Data</h1>
         </div>
 
         <div className="App " >
 
-          <div class="row justify-content-around">
+          <div class="row justify-content-around align-items-center">
             <div class="col-12 col-md-8">
               
                 <Pie 
@@ -101,7 +101,7 @@ export default  function Dashboard(props) {
                     
                     labels:labels,
                     datasets:[{
-                      label:"Charts by State.",
+                      label:"Charts  State.",
                       data:stateData,
                       backgroundColor:stateColors,
                         hoverBackgroundColor:stateColors,            
@@ -111,13 +111,13 @@ export default  function Dashboard(props) {
                   options={{
                     title:{
                       display:true,
-                      text:"Charts by States.",
-                      fontSize:25,
+                      text:"States Chart",
+                      fontSize:50,
                       color:"white"
                     },
                     legend:{
                       display:true,
-                      postion:'right',
+                      position:'left',
 
                     },
                     labels:{
@@ -127,50 +127,50 @@ export default  function Dashboard(props) {
                   
 
                   }}
-                  onElementsClick={elems =>{    console.log(elems[0]._datasetIndex + ', ' + labels[elems[0]._index]);
+                  onElementsClick={elems =>{   try{ 
                   // and then redirect to the target page:
                     window.location = `/search?collegeName=&country=&state=${labels[elems[0]._index]}&city=&courses=`;
-                    
+                    }catch(e){console.log(e)}
                   }}
                 />
          </div>
 
           <div class="col-6 col-md-4">
-          <h2> Charts by State.</h2>
+          <h2>{" "}</h2>
           </div>
           </div>
        </div>
 
       
         <div className="App">
-        <h2>dsf</h2>
-        <div class="row justify-content-around">
+        
+        <div class="row justify-content-around align-items-center">
         <div class="col-6 col-md-4">
-         
+        <h2>{""}</h2>
        </div>
         <div class="col-12 col-md-8">
+        
         <Pie 
         
           data={{
             
             labels:coursesLables,
             datasets:[{
-              label:"Charts by Courses.",
+              // label:"Charts by Courses.",
               data:coursesData,
               backgroundColor:coursesColors,
-              hoverBackgroundColor:coursesColors,
-              
-            }],
+              hoverBackgroundColor:coursesColors }],
           }}
           options={{
             title:{
               display:true,
-              text:"Charts by Courses.",
-              fontSize:25,
-              color:"white"
+              text:"Courses Chart",
+              fontSize:50,
+              color:"white",
             },
             legend:{
-              postion:'right',
+              display:true,
+              position:"right"
 
             },
             labels:{
@@ -179,10 +179,10 @@ export default  function Dashboard(props) {
               
             }
           }}
-          onElementsClick={elems =>{    console.log(elems[0]._datasetIndex + ', ' + coursesLables[elems[0]._index]);
+          onElementsClick={elems =>{   try{
         // and then redirect to the target page:
         window.location = `/search?collegeName=&country=&state=&city=&courses=${coursesLables[elems[0]._index]}`;
-        
+          }catch(e){console.log(e)}
       }}
          />
          

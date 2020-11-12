@@ -68,7 +68,7 @@ import "./../App.css"
             // setSearchColleges(data)
             // setSpinner1(false)  
             console.log(data)
-        setSearchColleges(data.data)
+            setSearchColleges(data.data)
             setSpinner1(false) 
 
         }else{
@@ -150,14 +150,15 @@ import "./../App.css"
                 
               
                 </Form.Row>
-                <Button variant="primary" type="submit" style={{alignItems:"right"}} > Submit </Button>
+                
                 <div className="d-flex justify-content-end" >
-                <Button className="btn btn-primary"><h5>Create</h5></Button>
+                <Button variant="primary" type="submit" style={{alignItems:"right"}} > Search </Button>
               </div>
             </Form>
             </div>
             <div className="App">
-                {showColleges}
+            <p style={{width:"100%",padding:"0%",textAlign:"center",fontSize:"25px"}}><table  className="row align-items-center"><td className="col">CollegeName {" "}</td><td className="col" >State{" "}</td><td className="col" > City</td><td className="col" >NoOfStudents</td><td className="col" > Courses{" "} </td></table>  </p>
+                {searchColleges.length == 0 ? "No Colleges Found" : showColleges}
             </div>
         </div>
     )

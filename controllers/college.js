@@ -90,11 +90,11 @@ exports.stateColleges = async(req,res)=>{
    
 exports.getColleges = async(req,res)=>{
 
-    const {name ,country,state,city,courses} = req.body;
-    console.log(name ,country,state,city,courses)
+    const {collegeName ,country,state,city,courses} = req.body;
+    console.log(collegeName ,country,state,city,courses)
 
     await Colleges.find({ $or :
-    [   {name:name},
+    [   {name:collegeName},
         {country:country},
         {state:state},
         {city:city},

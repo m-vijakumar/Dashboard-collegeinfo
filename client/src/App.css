@@ -15,15 +15,15 @@
 
 .App1 {
   /* margin-top:5%; */
-  padding: 2%;
+  padding: 1%;
   color: rgb(0, 0, 0);
-  background-color: rgba(247, 247, 247, 0.932); 
-  margin: 0;
+  background-color: rgba(182, 182, 182, 0.932); 
+  margin: 2%;
   font-family: 'Poppins', sans-serif;
 }
 .App1:nth-child(odd) {
   /* margin-top:5%; */
-   background-color: rgba(2, 2, 2, 0.884); 
+   background-color: rgba(15, 15, 15, 0.884); 
    color: rgb(217, 220, 223);
   }
   
