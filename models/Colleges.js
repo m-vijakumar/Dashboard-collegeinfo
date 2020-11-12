@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 
 
 const  Schema = mongoose.Schema;
-const userSchema = new Schema({
+const CollegeSchema = new Schema({
     name:{
         type: String,
         require:true
@@ -26,16 +26,17 @@ const userSchema = new Schema({
     },
     noofstudents:{
         type:Number,
-        require:true
+        require:true,
+        default : 0
     },
     courses:[{
-        name:{
             type: String,
             require:true
-        }
-    }],
+        }],
     date:{
         type:Date,
         default :Date.now
     }
 })
+
+const Colleges = module.exports  = mongoose.model("colleges",CollegeSchema);

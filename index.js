@@ -30,8 +30,8 @@ app.use(session({
 
 
 app.use(cors());
-app.use("/api",require("./routers/api/auth"));
-app.use("/api/address",require("./routers/api/address"));
+app.use("/api/colleges",require("./routers/api/colleges"));
+app.use("/api/students",require("./routers/api/students"));
 
 const db =require("./setup/connect").mongodbURL;
 const s =async()=>{ 
