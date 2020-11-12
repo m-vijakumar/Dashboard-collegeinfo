@@ -43,10 +43,10 @@ await mongoose
 s().catch(err => console.log(err))
 
 
-app.get("/",(req,res)=>{
+// app.get("/",(req,res)=>{
     
-    res.send("hello");
-});
+//     res.send("hello");
+// });
 
 app.use(express.static(path.join(__dirname, "client/build")));
     app.get("/*", (req, res) => {

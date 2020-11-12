@@ -38,9 +38,10 @@ function AlertDismissibleExample(props) {
     }
 
     const displayStudents =  students.map(student =>{
-        return  <h5 >{student.name}</h5>
+      return  <table  style={{width:"100%"}} className="row align-items-center"><td className="col" ><h5 >{student.name}</h5></td><td className="col" > {student.yearOfJoin}{" "} </td><td className="col" > {student.skills}{" "} </td></table>;
+        
     })
-
+    
     if (show) {
       return (
         <Alert variant="secondary" onClose={() => setShow(false)} dismissible>
