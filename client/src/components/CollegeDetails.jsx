@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import {Alert , Button} from 'react-bootstrap'
 
-function AlertDismissibleExample(props) {
+function AlerdivismissibleExample(props) {
     const [show, setShow] = useState(false);
     const [students,setStudents]=useState([]);
     
@@ -38,7 +38,7 @@ function AlertDismissibleExample(props) {
     }
 
     const displayStudents =  students.map(student =>{
-      return  <table  style={{width:"100%"}} className="row align-items-center"><td className="col" ><h5 >{student.name}</h5></td><td className="col" > {student.yearOfJoin}{" "} </td><td className="col" > {student.skills}{" "} </td></table>;
+      return  <div  style={{width:"100%"}} className="row align-items-center"><div className="col" ><h5 >{student.name}</h5></div><div className="col" > {student.yearOfJoin}{" "} </div><div className="col d-none d-md-block" > {student.skills}{" "} </div></div>;
         
     })
     
@@ -51,7 +51,7 @@ function AlertDismissibleExample(props) {
         </Alert>
       );
     }
-    return <p style={{width:"100%", cursor:"pointer"}} onClick={(e) => getStudents(props.college._id) } ><table  className="row align-items-center"><td className="col">{props.college.name} {" "}</td><td className="col" >{props.college.state}{" "}</td><td className="col" > {props.college.city}{" "} </td><td className="col" > {props.college.noofstudents}{" "} </td><td className="col" > {props.college.courses}{" "} </td></table>  </p>;
+    return <div  className="row align-items-center" onClick={(e) => getStudents(props.college._id) } style={{width:"100%", cursor:"pointer"}} ><div className="col">{props.college.name} {" "}</div><div className="col" >{props.college.state}{" "}</div><div className="col d-none d-md-block" > {props.college.city}{" "} </div><div className="col d-none d-md-block" > {props.college.noofstudents}{" "} </div><div className="col d-none d-md-block" > {props.college.courses}{" "} </div></div> ;
   }
 
   
@@ -65,7 +65,7 @@ const CollegeDetails = (props) => {
     return (
 
           <div className=" App1" >
-                  <AlertDismissibleExample  college={props.college}  />        
+                  <AlerdivismissibleExample  college={props.college}  />        
           </div>
     )
 }

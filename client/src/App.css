@@ -3,7 +3,7 @@
   /* margin-top:5%; */
   padding: 5%;
   color: rgb(0, 0, 0);
-  background-color: rgba(247, 247, 247, 0.932); 
+  background-color: rgba(235, 235, 235, 0.932); 
   margin: 0;
   font-family: 'Poppins', sans-serif;
 }
@@ -19,6 +19,11 @@
   color: rgb(0, 0, 0);
   background-color: rgba(182, 182, 182, 0.932); 
   margin: 2%;
+  font-family: 'Poppins', sans-serif;
+}
+.App2 {
+  color: rgb(0, 0, 0);
+  background-color: rgba(247, 247, 247, 0.932); 
   font-family: 'Poppins', sans-serif;
 }
 .App1:nth-child(odd) {

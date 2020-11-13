@@ -2,8 +2,9 @@ import React,{useState,useEffect} from 'react'
 import {Form,Col,Button} from 'react-bootstrap'
 import CollegeDetails from '../components/CollegeDetails'
 import "./../App.css"
+import Footer from './Footer'
 // import { options } from '../../../routers/api/colleges';
- const Search = ({location},props) => {
+ const Search = (props) => {
 
 
     const [colleges,setColleges]=useState([]);
@@ -11,7 +12,7 @@ import "./../App.css"
     const [searchColleges,setSearchColleges]=useState([]);
     const [isSpinner,setSpinner] =useState(true);
     const [isSpinner1,setSpinner1] =useState(false);
-    const [searchData,setSearchData]= useState({});
+    const [searchData,setSearchData]= useState(props.searchData);
     const [errMessage,setErrMessage]= useState();
 
 
@@ -43,7 +44,7 @@ import "./../App.css"
 
     const handleChange = e => {
         setSearchData({ ...searchData, [e.target.name]: e.target.value });
-        //console.log("vijay")
+        console.log("vijay")
       };
 
     const getSearchResults = async(e) =>{
@@ -52,6 +53,7 @@ import "./../App.css"
         try{
         setSpinner1(true)
         // e.perventDefault()
+        // e.persist();
         const response = await fetch('/api/colleges/getcolleges' , {
         method: "POST",
         headers: {
@@ -83,38 +85,43 @@ import "./../App.css"
 
     }
     useEffect(() => {
+        setSearchData(props.searchData)
         getSearchResults()
-    }, [searchData])
+        console.log()
+    }, [props.searchData])
 
     const showColleges = searchColleges.map((college)=>{
 
-        return  <CollegeDetails key={colleges._id} college={college} />
+        return  <CollegeDetails key={colleges._id} college={college}  />
    })
 
-    const getparams = async()=>{
-        const params = new URLSearchParams(location.search);
+    // const getparams = async()=>{
+    //     const params = new URLSearchParams(location.search);
 
-        const searchdata = {
-            collegeName : params.get('collegeName'),
-            state : params.get('state'),
-            country : params.get('country'),
-            city : params.get('city'),
-            courses : params.get('courses')
-        }
+    //     const searchdata = {
+    //         collegeName : params.get('collegeName'),
+    //         state : params.get('state'),
+    //         country : params.get('country'),
+    //         city : params.get('city'),
+    //         courses : params.get('courses')
+    //     }
 
-        await setSearchData(searchdata);
-    }
+    //     await setSearchData(searchdata);
+    // }
   
+    const nullColleges = <p className="align-items-center">No Colleges Founnd</p>
     useEffect(() => {
-        getparams()   
+        // getparams()   
+        getSearchResults()
         getAllColleges()
         getAllStates()
+        console.log(props.searchData)
 
     }, [])
     return (
         <div>
         <div className="App">
-            <Form>
+            <Form onChange={handleChange} onSubmit={ (e)=>getSearchResults(e)}>
                 <Form.Row>
                 <Form.Group as={Col} sm="3" md="3"  controlId="formGridState">
                 <Form.Label>College Name</Form.Label>
@@ -152,14 +159,18 @@ import "./../App.css"
                 </Form.Row>
                 
                 <div className="d-flex justify-content-end" >
-                <Button variant="primary" type="submit" style={{alignItems:"right"}} > Search </Button>
+                <Button variant="primary" style={{alignItems:"right"}} onClick={e => getSearchResults(e)}> Search </Button>
               </div>
             </Form>
             </div>
-            <div className="App">
-            <p style={{width:"100%",padding:"0%",textAlign:"center",fontSize:"25px"}}><table  className="row align-items-center"><td className="col">CollegeName {" "}</td><td className="col" >State{" "}</td><td className="col" > City</td><td className="col" >NoOfStudents</td><td className="col" > Courses{" "} </td></table>  </p>
+            <br />
+            <div className="App2">
+            <div  className= "row align-items-center " style={{width:"97%" ,paddingLeft:"2%"}} ><div className="col">College Name {" "}</div><div className="col" >State{" "}</div><div className="col d-none d-md-block" > City</div><div className="col d-none d-md-block" >No Of Students</div><div className=" col d-none d-md-block" > Courses{" "} </div></div> 
+            <div className="App2">
                 {searchColleges.length == 0 ? "No Colleges Found" : showColleges}
             </div>
+            </div>
+            <Footer/>
         </div>
     )
 }

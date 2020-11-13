@@ -3,12 +3,13 @@ import "./../App.css"
 import Footer from './Footer';
 
 import {Pie} from 'react-chartjs-2';
+import Search from './Search';
 // const option = {
 //   title:{
 //     display
 //   }
 // }
-export default  function Dashboard(props) {
+export default  function Dashboard({location},props) {
 
     // const [isSpinner1,setSpinner1] =useState(false);
     const [isSpinner,setSpinner]=useState(true);
@@ -23,6 +24,7 @@ export default  function Dashboard(props) {
     const [coursesData,setCoursesData] = useState([]);
     const [coursesColors,setCoursesColors] = useState([]);
 
+    const [searchData,setSearchData]= useState({});
 
     const getStateColleges = async()=>{
         const resp = await fetch("/api/colleges/state-colleges")
@@ -48,6 +50,17 @@ export default  function Dashboard(props) {
       return "rgb(" + r + "," + g + "," + b + ")";
     }
 
+    const getparams = async()=>{
+      const params = new URLSearchParams(location.search);
+
+      const searchdata = {
+          state : params.get('state'),
+          courses : params.get('courses')
+      }
+
+      await setSearchData(searchdata);
+  }
+
     useEffect(() => {
       setLables(  colleges.map((college)=>{return college._id }));
       setStateData( colleges.map((college)=>{ return college.count }));
@@ -64,6 +77,8 @@ export default  function Dashboard(props) {
   //  <span className="sr-only">Loading...</span>
   //  </div> 
 
+    const searchResults = <Search searchData={searchData} />
+    
     useEffect(()=>{
         console.log("sssss")
         getStateColleges();
@@ -71,7 +86,9 @@ export default  function Dashboard(props) {
         console.log(labels )
         console.log(stateData)
         getCoursesData()
+        getparams()
         setSpinner(false)
+        console.log(searchData)
     },[])
     if (isSpinner) {
         return (
@@ -88,13 +105,18 @@ export default  function Dashboard(props) {
         
         
         <div className="App ">
-        <h1 class="justify-content-center align-items-center" style={{textAlign:"center"}}>Colleges Data</h1>
+        <h1 class="justify-content-center " style={{textAlign:"center"}}>Colleges Data</h1>
+        </div>
+
+        <div className="App">
+          <h2 style={{padding:"2%"}}>Search College</h2>
+          { searchResults}
         </div>
 
         <div className="App " >
 
-          <div class="row justify-content-around align-items-center">
-            <div class="col-12 col-md-8">
+          <div class="row justify-content-start align-items-center">
+            <div class="col-12 col-md-10">
               
                 <Pie 
                   data={{
@@ -110,14 +132,15 @@ export default  function Dashboard(props) {
                   }}
                   options={{
                     title:{
-                      display:true,
+                      display:false,
                       text:"States Chart",
                       fontSize:50,
-                      color:"white"
+                      color:"white",
+                      margin:"2%"
                     },
                     legend:{
                       display:true,
-                      position:'left',
+                      position:'right',
 
                     },
                     labels:{
@@ -129,26 +152,28 @@ export default  function Dashboard(props) {
                   }}
                   onElementsClick={elems =>{   try{ 
                   // and then redirect to the target page:
-                    window.location = `/search?collegeName=&country=&state=${labels[elems[0]._index]}&city=&courses=`;
+                  // setSearchData({...searchData ,state:labels[elems[0]._index]})
+
+                    window.location = `/dashboard?collegeName=&country=&state=${labels[elems[0]._index]}&city=&courses=`;
                     }catch(e){console.log(e)}
                   }}
                 />
          </div>
+         <div className="col">
+                  <h3 style={{textAlign:"right"}}>States</h3>
+         </div>
 
-          <div class="col-6 col-md-4">
-          <h2>{" "}</h2>
-          </div>
           </div>
        </div>
 
       
         <div className="App">
         
-        <div class="row justify-content-around align-items-center">
-        <div class="col-6 col-md-4">
-        <h2>{""}</h2>
-       </div>
-        <div class="col-12 col-md-8">
+        <div class="row justify-content-end align-items-center">
+          <div className="col">
+            <h3 >Courses</h3>
+          </div>
+        <div class="col-12 col-md-10">
         
         <Pie 
         
@@ -163,14 +188,14 @@ export default  function Dashboard(props) {
           }}
           options={{
             title:{
-              display:true,
+              display:false,
               text:"Courses Chart",
               fontSize:50,
               color:"white",
             },
             legend:{
               display:true,
-              position:"right"
+              position:"left"
 
             },
             labels:{
@@ -181,7 +206,7 @@ export default  function Dashboard(props) {
           }}
           onElementsClick={elems =>{   try{
         // and then redirect to the target page:
-        window.location = `/search?collegeName=&country=&state=&city=&courses=${coursesLables[elems[0]._index]}`;
+        window.location = `/dashboard?collegeName=&country=&state=&city=&courses=${coursesLables[elems[0]._index]}`;
           }catch(e){console.log(e)}
       }}
          />
@@ -190,10 +215,8 @@ export default  function Dashboard(props) {
        </div>
      
      </div>
-      </div>
-        <Footer />
-       
-        
+      </div> 
+        <Footer  />
         </div>
         
     )
