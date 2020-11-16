@@ -79,7 +79,7 @@ li::-webkit-scrollbar-thumb:hover {
 }
 .legendHeight {
 
-  max-height: 30vh;
+  max-height: 10em;
   max-width: 15em;
 
 }
@@ -195,14 +195,14 @@ li::-webkit-scrollbar-thumb:hover {
 /* .legendControl{
   display: grid;
 } */
-@media screen and (max-width: 900px) {
+/* @media screen and (max-width: 900px) {
   .legendHeight {
 
-    max-height: 30vh;
+    max-height: 20em;
     width: 100%;
   
   }
-}
+} */
 @media screen and (max-width: 400px) {
   .social-text {
     font-size: 0.93rem;
