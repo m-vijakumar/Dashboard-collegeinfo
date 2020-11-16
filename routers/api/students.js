@@ -27,5 +27,12 @@ router.post("/add",studentController.add)
 
 router.post("/college_students",studentController.getCollegeStudents)
 
+// @type    POST
+//@route    /api/student/add
+// @desc    route for getting student details
+// @access  PRAVITE 
+
+router.post("/getstudent",studentController.getStudent)
+
 
 module.exports =router;

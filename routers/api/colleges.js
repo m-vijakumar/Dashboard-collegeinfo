@@ -12,12 +12,19 @@ const collegeController = require("../../controllers/college")
 
 router.post("/add",collegeController.add)
 
-// @type    POST
+// @type    GET
 //@route    /api/college/add
 // @desc    route for getting college details
 // @access  PRAVITE
 
 router.get("/all_colleges",collegeController.allColleges)
+
+// @type    POST
+//@route    /api/college/add
+// @desc    route for getting college details
+// @access  PRAVITE
+
+router.post("/all_colleges",collegeController.getCollegeWithStudent)
 
 // @type    POST
 //@route    /api/college/add

@@ -1,36 +1,39 @@
 
-.App {
-  /* margin-top:5%; */
-  padding: 5%;
-  color: rgb(0, 0, 0);
-  background-color: rgba(235, 235, 235, 0.932); 
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-}
 .App:nth-child(odd) {
   /* margin-top:5%; */
-   background-color: rgba(2, 2, 2, 0.884); 
-   color: rgb(217, 220, 223);
+  padding: 2%;
+  color: rgb(0, 0, 0);
+  background-color: rgba(230, 255, 255, 0.966); 
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  
+}
+.App {
+  /* margin-top:5%; */
+   background-color: rgb(248, 255, 255); 
+   color: rgb(0, 0, 0);
+   border-color: rgba(191, 253, 245, 0.986);
   }
-
 .App1 {
   /* margin-top:5%; */
-  padding: 1%;
-  color: rgb(0, 0, 0);
-  background-color: rgba(182, 182, 182, 0.932); 
-  margin: 2%;
-  font-family: 'Poppins', sans-serif;
+  padding: 2%;
+  background-color: rgba(129, 235, 235, 0.849); 
+   color: rgb(0, 0, 0);
+   border-color: rgba(191, 253, 245, 0.986);
 }
+.App1:nth-child(odd) {
+  /* margin-top:5%; */
+  background-color: rgba(201, 249, 255, 0.959); 
+   color: rgb(0, 0, 0);
+  }
+
+
 .App2 {
   color: rgb(0, 0, 0);
   background-color: rgba(247, 247, 247, 0.932); 
   font-family: 'Poppins', sans-serif;
 }
-.App1:nth-child(odd) {
-  /* margin-top:5%; */
-   background-color: rgba(15, 15, 15, 0.884); 
-   color: rgb(217, 220, 223);
-  }
+
   
 a{
   text-decoration: none;

@@ -47,3 +47,23 @@ exports.getCollegeStudents = async(req,res)=>{
                 })
 
 }
+
+exports.getStudent = async(req,res)=>{
+
+    const {collegeId,studentId} = req.body;
+
+    await Students.findOne({collegeId:collegeId,_id:studentId})
+                .then((result)=>{
+                    console.log(result)
+                    res.json({
+                        error:false,
+                        data:result
+                    })
+                }).catch((err)=>{
+                    res.json({
+                        error:true,
+                        msg:"err  :"+err
+                    })
+                })
+
+}

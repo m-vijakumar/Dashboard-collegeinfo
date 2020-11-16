@@ -64,9 +64,15 @@ const CollegeDetails = (props) => {
     
     return (
 
-          <div className=" App1" >
-                  <AlerdivismissibleExample  college={props.college}  />        
-          </div>
+
+            <div className="row  align-items-center" style={{width:"100%", cursor:"pointer", margin:"0%"}} >
+              <div className="col"><a href={`/college/${props.college._id}`} >{props.college.name} {" "}</a></div>
+              <div className="col d-none d-md-block" >{props.college.state}{" "}</div>
+              <div className="col d-none d-md-block" > {props.college.city}{" "} </div>
+              <div className="col d-none d-md-block" > {props.college.noofstudents}{" "} </div>
+              <div className="col d-none d-md-block" > {props.college.courses}{" "} </div>
+            </div>  
+
     )
 }
 

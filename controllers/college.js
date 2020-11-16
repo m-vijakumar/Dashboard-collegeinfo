@@ -31,13 +31,46 @@ exports.add = async(req,res) =>{
 
 exports.allColleges = async(req,res)=>{
     
-    // console.log(req.body.collegeId)
+    console.log(req.body.collegeId)
+    // await Colleges.aggregate([
+    //                         {
+    //                             $match:{
+    //                                 _id:mongoose.Types.ObjectId(req.body.collegeId)
+    //                             }
+    //                         },
+    //                         { 
+    //                             $lookup:{
+    //                                 from:"students",
+    //                                 localField:"_id",
+    //                                 foreignField:"collegeId",
+    //                                 as:"students" 
+    //                             }
+    //                         }
+    //                         ])
+    await Colleges.find({})
+                .then((result)=>{
+                    console.log(result)
+                    res.json({
+                        error:false,
+                        data:result
+                    })
+                }).catch((err)=>{
+                    res.json({
+                        error:true,
+                        msg:"err  :"+err
+                    })
+                })
+}
+
+exports.getCollegeWithStudent = async(req,res)=>{
+    
+    console.log(req.body.collegeId)
     await Colleges.aggregate([
-                            // {
-                            //     $match:{
-                            //         _id:mongoose.Types.ObjectId(req.body.collegeId)
-                            //     }
-                            // },
+                            {
+                                $match:{
+                                    _id:mongoose.Types.ObjectId(req.body.collegeId)
+                                }
+                            },
                             { 
                                 $lookup:{
                                     from:"students",
