@@ -15,22 +15,21 @@
    border-color: rgba(191, 253, 245, 0.986);
   }
 .App1 {
-  /* margin-top:5%; */
-  padding: 2%;
-  background-color: rgba(129, 235, 235, 0.849); 
+  padding: 1% 0% 1% 0%;
+  background-color: rgb(237, 251, 255); 
    color: rgb(0, 0, 0);
-   border-color: rgba(191, 253, 245, 0.986);
 }
 .App1:nth-child(odd) {
-  /* margin-top:5%; */
-  background-color: rgba(201, 249, 255, 0.959); 
+  padding: 1% 0% 1% 0%;
+  background-color: rgba(224, 246, 255, 0.959); 
    color: rgb(0, 0, 0);
+   
   }
 
 
 .App2 {
   color: rgb(0, 0, 0);
-  background-color: rgba(247, 247, 247, 0.932); 
+  background-color: rgba(146, 206, 255, 0.966); 
   font-family: 'Poppins', sans-serif;
 }
 
@@ -59,6 +58,32 @@ a{
 li{
   list-style: none;
 }
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+li::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+.legendHeight {
+
+  max-height: 30vh;
+  max-width: 15em;
+
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -165,6 +190,17 @@ li{
 @media screen and (min-width: 500px) {
   .social-text {
     font-size: 2rem;
+  }
+}
+/* .legendControl{
+  display: grid;
+} */
+@media screen and (max-width: 900px) {
+  .legendHeight {
+
+    max-height: 30vh;
+    width: 100%;
+  
   }
 }
 @media screen and (max-width: 400px) {

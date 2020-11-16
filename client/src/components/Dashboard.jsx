@@ -4,6 +4,7 @@ import Footer from './Footer';
 import {Form,Col,Button} from 'react-bootstrap'
 import {Pie} from 'react-chartjs-2';
 import CollegeDetails from '../components/CollegeDetails'
+import { Tooltip } from 'chart.js';
 export default  function Dashboard() {
 
     const [isSpinner,setSpinner]=useState(true);
@@ -72,6 +73,13 @@ export default  function Dashboard() {
       console.log("vijay")
     };
 
+    const coursesList = coursesLables.map((value,index)=>
+           <li key={index} style={{marginLeft:"-1em", color:coursesColors[index], "list-style":"square", fontSize:"0.8em" }}><span style={{color:"black", display:"inline","white-space": "nowrap"}}>{value}</span></li>
+    )
+    const statesList = labels.map((value,index)=>
+           <li key={index} style={{marginLeft:"-1em", color:stateColors[index],"list-style":"square", fontSize:"0.8em" }}><span style={{color:"black",display:"inline","white-space": "nowrap"}}>{value}</span></li>
+    )
+
     const getSearchResults = async(e) =>{
 
       console.log("ready")
@@ -91,9 +99,6 @@ export default  function Dashboard() {
       const data = await response.json();
       
       if (data.error === false) {
-          // console.log(data)
-          // setSearchColleges(data)
-          // setSpinner1(false)  
           console.log(data)
           setSearchColleges(data.data)
           setSpinner1(false) 
@@ -158,96 +163,102 @@ export default  function Dashboard() {
         <div className="App " style={{padding:'0% 1% 0% 1%'}} >
 
         <div >
-          <div class="row ">
-            <div class="col-6 " style={{border: 'solid 1px rgba(191, 253, 245, 0.986)',overflow: 'hide',height:"100%" ,width:"50%"}}>
-                <h3 >State</h3>
-                <Pie 
-                  data={{
-                    
-                    labels:labels,
-                    datasets:[{
-                      label:"Charts  State.",
-                      data:stateData,
-                      backgroundColor:stateColors,
-                        hoverBackgroundColor:stateColors,            
-                    }]
-
-                  }}
-                  options={{
-                    legend:{
-                      display:window.innerWidth >745 ? true:false,
-                      position:'bottom',
-                    },
-                    
-                    responsive:true,
-                    
-                    overflow:"scroll"
-
-                  }}
-                  onElementsClick={(elems,e) =>{   try{ 
-                  // and then redirect to the target page:
-                  setSearchData({state:labels[elems[0]._index]})
-
-                      getSearchResults(e);
-                    // window.location = `/dashboard?collegeName=&country=&state=${labels[elems[0]._index]}&city=&courses=`;
-                    }catch(err){console.log(err)}
-                  }}
-                />
-              </div>
-              <div class="col-6" style={{border: 'solid 1px rgba(191, 253, 245, 0.986)',height:"100%" ,width:"50%"}}>
-                <h3 >Courses</h3>
-                <Pie 
-         
-                  data={{
-                    
-                    labels:coursesLables,
-                    datasets:[{
-                      // label:"Charts by Courses.",
-                      data:coursesData,
-                      backgroundColor:coursesColors,
-                      hoverBackgroundColor:coursesColors }],
-                  }}
-                  options={{
-                    title:{
-                      display:false,
-                      text:"Courses Chart",
-                      fontSize:50,
-                      color:"white",
-                    },
-                    legend:{
-                      // display:window.innerWidth >745 ? true:false,
-                      position:"bottom",
-                      overflow:"scroll"
-                    },
-                    labels:{
-                      display:true,
-                      fontColor:"white",
+          <div class="row align-items-center no-gutters">
+            <div class="col-6" style={{border: 'solid 1px rgba(191, 253, 245, 0.986)' }}>
+              <div className="row align-items-center">
+                <div className="col-lg-9 col-md-8 ">
+                  <h3 >State</h3>
+                  <Pie 
+                    data={{
                       
-                    },
-                    padding:{
-                      left:0,
-                      right:0,
-                      top:0,
-                      bottom:0
-                    },
-                    responsive:true,
-                    maintainAspectRatio:true,
-                    overflow:"scroll"
-     
-                  }}
-                  
-                  
-                  onElementsClick={elems =>{   try{
-                    // and then redirect to the target page:
-                    // window.location = `/dashboard?collegeName=&country=&state=&city=&courses=${coursesLables[elems[0]._index]}`;
-                    setSearchData({courses:coursesLables[elems[0]._index]})
-                    }catch(e){console.log(e)}
-                  }}
-                /> 
-             </div>
-         
+                      labels:labels,
+                      datasets:[{
+                        label:"Charts  State.",
+                        data:stateData,
+                        backgroundColor:stateColors,
+                          hoverBackgroundColor:stateColors,            
+                      }]
 
-          </div>
+                    }}
+                    options={{
+                      
+                      legend:{
+                        display:false
+                      },
+                      responsive:true,
+                      overflow:"auto"
+
+                    }}
+                    onElementsClick={(elems,e) =>{   try{ 
+                    // and then redirect to the target page:
+                    setSearchData({state:labels[elems[0]._index]})
+
+                        getSearchResults(e);
+                      // window.location = `/dashboard?collegeName=&country=&state=${labels[elems[0]._index]}&city=&courses=`;
+                      }catch(err){console.log(err)}
+                    }}
+                  />
+                </div>
+                <div  className="col-lg-3 col-md-4 " style={{"overflow":"auto" }} >
+                  <ul style={{"overflow":"auto" }} className="legendHeight">
+                    {statesList}
+                  </ul>
+                </div> 
+              </div> 
+            </div>
+
+            <div class=" col-6" style={{border: 'solid 1px rgba(191, 253, 245, 0.986)' }}>
+                <div className="row align-items-center" >
+                  <div className="col-lg-9 col-md-8 " >
+                    <h3 >Courses</h3>
+                    <Pie 
+            
+                      data={{
+                        
+                        labels:coursesLables,
+                        datasets:[{
+                          // label:"Charts by Courses.",
+                          data:coursesData,
+                          backgroundColor:coursesColors,
+                          hoverBackgroundColor:coursesColors }],
+                      }}
+                      options={{
+                        title:{
+                          display:false,
+                          text:"Courses Chart",
+                          fontSize:50,
+                          color:"white",
+                        },
+                        legend:{
+                          display:false
+                        },
+                        responsive:true,
+                        overflow:"auto",
+                        Tooltip:{
+                          borderWidth:0
+                        }
+                      }}
+                      
+                  
+                      
+                      onElementsClick={elems =>{   try{
+                        // and then redirect to the target page:
+                        // window.location = `/dashboard?collegeName=&country=&state=&city=&courses=${coursesLables[elems[0]._index]}`;
+                        setSearchData({courses:coursesLables[elems[0]._index]})
+                        }catch(e){console.log(e)}
+                      }}
+                    />
+                  </div>
+                    <div  className="col-lg-3 col-md-4" style={{"overflow-y":"auto" }} >
+                      <ul style={{"overflow":"auto" }} className="legendHeight">
+                        {coursesList}
+                      </ul>
+                    </div>
+                </div>
+              </div>
+             
+
+            </div>
           </div>
         </div>
 
@@ -298,7 +309,7 @@ export default  function Dashboard() {
                 <div className="col d-none d-md-block" >No Of Students</div>
                 <div className=" col d-none d-md-block" > Courses{" "} </div>
             </div> 
-            <div className="App2" >
+            <div className="App" >
                 {searchColleges.length == 0 ? "No Colleges Found" : showColleges}
             </div>
         </div>
