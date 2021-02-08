@@ -1,13 +1,13 @@
 # colleges-info
 
+### Solar System Exploration, 1950s – 1960s
 
-### Third Project 
-
-[x] eQWEQWEWQEQW 
-
-[] awdQWDWD 
-
-[] WDAWDWDQWEQW 
-
-[] DQWQWEQEWEQW 
-
+- [ ] Mercury
+- [x] Venus
+- [x] Earth (Orbit/Moon)
+- [x] Mars
+- [ ] Jupiter
+- [ ] Saturn
+- [ ] Uranus
+- [ ] Neptune
+- [ ] Comet Haley
